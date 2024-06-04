@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-declare var jQuery: any;
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SearchComponent } from './components/search/search.component';
+import { CategoryComponent } from './components/category/category.component';
+import { AboutComponent } from './components/about/about.component';
+import { PropertyListComponent } from './components/property-list/property-list.component';
+import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
+import { AgentListComponent } from './components/agent-list/agent-list.component';
+import { TestimonialComponent } from './components/testimonial/testimonial.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CarouselModule],
+  imports: [RouterOutlet,CarouselModule,NavbarComponent,HeaderComponent,
+    SearchComponent,CategoryComponent,AboutComponent,PropertyListComponent,
+    CallToActionComponent,AgentListComponent,TestimonialComponent,FooterComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -13,48 +26,6 @@ export class AppComponent {
   title = 'RealEstateClient';
  
 
-  ngAfterViewInit() {
- (function ($) {
-   $(document).ready(function () {
-     $('.header-carousel').owlCarousel({
-      autoplay: true,
-      smartSpeed: 1500,
-      items: 1,
-      dots: true,
-      loop: true,
-      nav : true,
-      navText : [
-          '<i class="bi bi-chevron-left"></i>',
-          '<i class="bi bi-chevron-right"></i>'
-      ]
-     });
-   });
- })(jQuery);
-
- (function ($) {
-  $(document).ready(function () {
-    $(".testimonial-carousel").owlCarousel({
-      autoplay: true,
-      smartSpeed: 1000,
-      margin: 24,
-      dots: false,
-      loop: true,
-      nav : true,
-      navText : [
-          '<i class="bi bi-arrow-left"></i>',
-          '<i class="bi bi-arrow-right"></i>'
-      ],
-      responsive: {
-          0:{
-              items:1
-          },
-          992:{
-              items:2
-          }
-      }
-    });
-  });
-})(jQuery);
-}
+  
 
 }
