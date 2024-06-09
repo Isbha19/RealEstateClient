@@ -31,7 +31,26 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
+
+            <div class="nav-item dropdown" >
+                <a class="btn btn-outline-primary nav-link nav-item"  data-bs-toggle="dropdown" href="#tab-2">Login</a>
+
+                <div class="dropdown-menu rounded-0 m-0 last-sub-menu">
+
+                    <p class="dropdown-text text-center" >Sign in or register to sync your favorite properties across devices</p>
+                    <button (click)="BringPopUp()" class="btn btn-primary  w-100 mt-2">Sign in</button>
+                    <div class="dropdown-divider"></div>
+                    <div class="arrow"></div>
+
+                    <p>Contacted properties(0)</p>
+                    <div class="dropdown-divider"></div>
+                    <p>Saved properties(0)</p>
+                    <div class="dropdown-divider"></div>
+                    <p>Saved searches(0)</p>
+                    </div>
+                
+                
+            </div>
         </div>
     </nav>
 </div>
