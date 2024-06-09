@@ -19,7 +19,9 @@ this.OpenPopUp()
 
   OpenPopUp(){
 this.dialog.open(RegisterComponent,{
-  width:'60%'
+  width:'60%',
+  panelClass: 'custom-container',
+  
 })
   }
 }
