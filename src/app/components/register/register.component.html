@@ -1,39 +1,98 @@
-    <!-- Call to Action Start -->
-    <div class="popup container-xxl py-5">
-        <div class="container">
-            <div class="bg-light rounded p-3">
-                <div class="bg-white rounded px-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
-                    <div class="row g-5 align-items-center">
-                        <div class="col-lg-6 wow  fadeIn text-center" data-wow-delay="0.1s" style="background-color: #f7f7f7">
-                            <img class="img-fluid rounded w-50" src="https://static-assets.propertyfinder.com/icons/account-benefits.svg" alt="">
-                          <div class="mt-4">
-                            <p>
-                                View saved properties</p>
-                            <p>Keep search history across devices</p>
-                            <p>See which properties you have contacted</p>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="mb-4">
-                                <form>
-                                    <div class="row g-3">
-                                       
-                                        <div class="col-12">
-                                            <div class="form-floating">
-                                                <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                                <label for="Email">Email</label>
-                                            </div>
-                                        </div>
-                                      
-                                    </div>
-                                </form>
-                            </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2 w-100">Continue</a>
-                            <p class="text-center mt-3">By registering you accept our Terms & Conditions and our privacy policy.</p>
-                        </div>
-                    </div>
-                </div>
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="bg-light rounded p-3">
+      <div
+        class="bg-white rounded p-4"
+        style="border: 1px dashed rgba(0, 185, 142, 0.3)"
+      >
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6 wow fadeIn text-center" data-wow-delay="0.1s">
+            <img
+              class="img-fluid rounded w-50"
+              src="https://static-assets.propertyfinder.com/icons/account-benefits.svg"
+              alt=""
+            />
+            <div class="mt-4">
+              <p>View saved properties</p>
+              <p>Keep search history across devices</p>
+              <p>See which properties you have contacted</p>
             </div>
+          </div>
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="mb-4">
+              <form>
+                <div class="row g-3">
+                  <div class="col-12" *ngIf="title === 'Login'">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="firstname"
+                        placeholder="First Name"
+                      />
+                      <label for="First Name">First Name</label>
+                    </div>
+                  </div>
+                  <div class="col-12" *ngIf="title === 'Login'">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lastname"
+                        placeholder="Last Name"
+                      />
+                      <label for="Last Name">Last Name</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="Email"
+                      />
+                      <label for="Email">Email</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="Password"
+                      />
+                      <label for="Password">Password</label>
+                    </div>
+                  </div>
+
+                  <div *ngIf="title === 'Create Account'">
+                    <a href="" class="btn btn-primary px-4 w-100">{{
+                      title
+                    }}</a>
+                    <p class="text-center mt-3">
+                      By registering you accept our Terms & Conditions and our
+                      privacy policy.
+                    </p>
+                  </div>
+                  <div
+                    class="col-12 d-flex justify-content-between align-items-center"
+                    *ngIf="title === 'Login'"
+                  >
+                    <a href="" class="btn btn-primary px-4 me-2">{{ title }}</a>
+                    <a href="#" class="text-decoration-none"
+                      >Forgot Password?</a
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Call to Action End -->
+  </div>
+</div>

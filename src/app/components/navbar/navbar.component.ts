@@ -11,16 +11,19 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class NavbarComponent {
 constructor(private dialog:MatDialog){}
-  BringPopUp(){
-    console.log("worked");
-    
-this.OpenPopUp()
+ LoginPopUp(){
+this.OpenPopUp('Login')
   }
 
-  OpenPopUp(){
-this.dialog.open(RegisterComponent,{
+  registerPopUp(){    
+this.OpenPopUp('Create Account')
+  }
+  OpenPopUp(title:any){
+ this.dialog.open(RegisterComponent,{
   width:'60%',
-  panelClass: 'custom-container',
+data:{
+  title:title,
+}
   
 })
   }
