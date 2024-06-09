@@ -1,6 +1,7 @@
+import { RegisterComponent } from './../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { RegisterComponent } from '../register/register.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,18 +13,15 @@ import { RegisterComponent } from '../register/register.component';
 export class NavbarComponent {
 constructor(private dialog:MatDialog){}
  LoginPopUp(){
-this.OpenPopUp('Login')
+this.OpenPopUp(LoginComponent)
   }
 
   registerPopUp(){    
-this.OpenPopUp('Create Account')
+this.OpenPopUp(RegisterComponent)
   }
-  OpenPopUp(title:any){
- this.dialog.open(RegisterComponent,{
+  OpenPopUp(Component:any){
+ this.dialog.open(Component,{
   width:'60%',
-data:{
-  title:title,
-}
   
 })
   }

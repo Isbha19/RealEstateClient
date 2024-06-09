@@ -22,7 +22,7 @@
             <div class="mb-4">
               <form>
                 <div class="row g-3">
-                  <div class="col-12" *ngIf="title === 'Login'">
+                  <div class="col-12">
                     <div class="form-floating">
                       <input
                         type="text"
@@ -33,7 +33,7 @@
                       <label for="First Name">First Name</label>
                     </div>
                   </div>
-                  <div class="col-12" *ngIf="title === 'Login'">
+                  <div class="col-12">
                     <div class="form-floating">
                       <input
                         type="text"
@@ -69,24 +69,15 @@
                     </div>
                   </div>
 
-                  <div *ngIf="title === 'Create Account'">
-                    <a href="" class="btn btn-primary px-4 w-100">{{
-                      title
-                    }}</a>
+                  <div >
+                    <a href="" class="btn btn-primary px-4 w-100">Create Account</a>
                     <p class="text-center mt-3">
                       By registering you accept our Terms & Conditions and our
                       privacy policy.
                     </p>
                   </div>
-                  <div
-                    class="col-12 d-flex justify-content-between align-items-center"
-                    *ngIf="title === 'Login'"
-                  >
-                    <a href="" class="btn btn-primary px-4 me-2">{{ title }}</a>
-                    <a href="#" class="text-decoration-none"
-                      >Forgot Password?</a
-                    >
-                  </div>
+                
+                
                 </div>
               </form>
             </div>
