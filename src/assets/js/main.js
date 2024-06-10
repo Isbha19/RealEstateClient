@@ -11,7 +11,7 @@
     };
     spinner();
     
-    console.log("Hellooo");
+   
     // Initiate the wowjs
     new WOW().init();
 

@@ -12,13 +12,14 @@ import { AgentListComponent } from './components/agent-list/agent-list.component
 import { TestimonialComponent } from './components/testimonial/testimonial.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountService } from './service/account.service';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet,CarouselModule,NavbarComponent,HeaderComponent,
     SearchComponent,CategoryComponent,AboutComponent,PropertyListComponent,
-    CallToActionComponent,AgentListComponent,TestimonialComponent,FooterComponent
+    CallToActionComponent,AgentListComponent,TestimonialComponent,FooterComponent,LoadingSpinnerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
