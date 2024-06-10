@@ -11,6 +11,7 @@ import { CallToActionComponent } from './components/call-to-action/call-to-actio
 import { AgentListComponent } from './components/agent-list/agent-list.component';
 import { TestimonialComponent } from './components/testimonial/testimonial.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AccountService } from './service/account.service';
 
 @Component({
   selector: 'app-root',
@@ -24,8 +25,28 @@ import { FooterComponent } from './components/footer/footer.component';
 })
 export class AppComponent {
   title = 'RealEstateClient';
- 
+  constructor(private accountService:AccountService){}
+  ngOnInit(): void {
+ this.refreshUser();
+  }
 
+
+private refreshUser(){
+  const jwt=this.accountService.getjwt();
+if(jwt){
+  
+  this.accountService.refreshUser(jwt).subscribe({
+    next:_=>{},
+    error:_=>{
+      this.accountService.logout();
+    }
+  })
+}else{
+
+  this.accountService.refreshUser(null).subscribe();
+}
+}
+  
   
 
 }

@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
               <div class="mb-4">
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                   <div class="row g-3">
                  
   
@@ -31,8 +31,14 @@
                           class="form-control"
                           id="email"
                           placeholder="Email"
+                          formControlName="userName"
+                          [class.is-invalid]="submitted && loginForm.get('userName')?.errors"
+
                         />
                         <label for="Email">Email</label>
+                        <span class="text-danger" *ngIf="submitted&&loginForm.get('userName')?.hasError('required')">
+                          Email is required
+                        </span>
                       </div>
                     </div>
   
@@ -43,15 +49,25 @@
                           class="form-control"
                           id="password"
                           placeholder="Password"
+                          formControlName="password"
+                          [class.is-invalid]="submitted && loginForm.get('password')?.errors"
+
+
                         />
                         <label for="Password">Password</label>
+                        <span class="text-danger" *ngIf="submitted&&loginForm.get('userName')?.hasError('required')">
+                          Password is required
+                        </span>
                       </div>
                     </div>
-  
+                    <div class="form-floating" *ngIf="errorMessages.length>0">
+                      <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
+                    </div>
+                                  
                     <div
                       class="col-12 d-flex justify-content-between align-items-center"
                     >
-                      <a href="" class="btn btn-primary px-4 me-2">Login</a>
+                      <button type="submit" class="btn btn-primary px-4 me-2">Login</button>
                       <a href="#" class="text-decoration-none"
                         >Forgot Password?</a
                       >

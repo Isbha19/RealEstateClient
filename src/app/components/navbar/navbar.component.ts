@@ -2,16 +2,20 @@ import { RegisterComponent } from './../register/register.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
+import { AccountService } from '../../service/account.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-constructor(private dialog:MatDialog){}
+constructor(private dialog:MatDialog,
+  public accountService:AccountService
+){}
  LoginPopUp(){
 this.OpenPopUp(LoginComponent)
   }
@@ -24,5 +28,8 @@ this.OpenPopUp(RegisterComponent)
   width:'60%',
   
 })
+  }
+  Logout(){
+    this.accountService.logout();
   }
 }
