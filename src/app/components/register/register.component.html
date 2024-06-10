@@ -20,7 +20,7 @@
           </div>
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
             <div class="mb-4">
-              <form>
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="form-floating">
@@ -29,8 +29,19 @@
                         class="form-control"
                         id="firstname"
                         placeholder="First Name"
+                        formControlName="firstName"
+                        [class.is-invalid]="submitted && registerForm.get('firstName')?.errors"
                       />
                       <label for="First Name">First Name</label>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('firstName')?.hasError('required')">
+                        First name is required
+                      </span>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('firstName')?.hasError('minlength')||submitted&&registerForm.get('firstName')?.hasError('maxlength')">
+                        First name must be atleast 3,and maximum 15 characters" 
+                      </span>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('firstName')?.hasError('pattern')">
+                        First name can't have numbers
+                         </span>
                     </div>
                   </div>
                   <div class="col-12">
@@ -40,9 +51,20 @@
                         class="form-control"
                         id="lastname"
                         placeholder="Last Name"
+                        formControlName="lastName"
+                        [class.is-invalid]="submitted && registerForm.get('lastName')?.errors"
+
                       />
                       <label for="Last Name">Last Name</label>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('lastName')?.hasError('required')">
+                        Last name is required
+                      </span>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('lastName')?.hasError('minlength')||submitted&&registerForm.get('lastName')?.hasError('maxlength')">
+                        Last name must be atleast 3,and maximum 15 characters"                      </span>
                     </div>
+                    <span class="text-danger" *ngIf="submitted&&registerForm.get('lastName')?.hasError('pattern')">
+                      Last name can't have numbers
+                       </span>
                   </div>
 
                   <div class="col-12">
@@ -52,8 +74,17 @@
                         class="form-control"
                         id="email"
                         placeholder="Email"
+                        formControlName="email"
+                        [class.is-invalid]="submitted && registerForm.get('email')?.errors"
+
                       />
                       <label for="Email">Email</label>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('email')?.hasError('required')">
+                        Email is required
+                      </span>
+                      <span class="text-danger" *ngIf="submitted&&registerForm.get('email')?.hasError('pattern')">
+                     Invalid email address
+                      </span>
                     </div>
                   </div>
 
@@ -64,13 +95,22 @@
                         class="form-control"
                         id="password"
                         placeholder="Password"
+                        formControlName="password"
+                        [class.is-invalid]="submitted && registerForm.get('password')?.errors"
+
                       />
                       <label for="Password">Password</label>
                     </div>
+                    <span class="text-danger" *ngIf="submitted&&registerForm.get('password')?.hasError('required')">
+                      Password is required
+                    </span>
+                    <span class="text-danger" *ngIf="submitted&&registerForm.get('password')?.hasError('minlength')||submitted&&registerForm.get('password')?.hasError('maxlength')">
+                      Password must be atleast 6,and maximum 15 characters"                      </span>
+              
                   </div>
 
                   <div >
-                    <a href="" class="btn btn-primary px-4 w-100">Create Account</a>
+                    <button type="submit" href="" class="btn btn-primary px-4 w-100">Create Account</button>
                     <p class="text-center mt-3">
                       By registering you accept our Terms & Conditions and our
                       privacy policy.

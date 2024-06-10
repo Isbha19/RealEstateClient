@@ -1,4 +1,4 @@
-export interface userregister{
+export interface Register{
     firstName:string,
     lastName:string,
     email:string,
