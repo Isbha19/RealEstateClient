@@ -81,20 +81,13 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.accountService.register(this.registerForm.value).subscribe({
         next: (response: any) => {
-          if(response.flag==true){
             this.toastr.success(response.message);
             this.dialogRef.close();
-            this.dialog.open(LoginComponent, { width: '60%' });
-          }else{
-            this.toastr.error(response.message);
-
-          }
-        
+            this.dialog.open(LoginComponent, { width: '60%' });        
         },
         error: (error) => {
-          if (error.error.errors) {
-            this.toastr.error(this.errorMessages.toString());
-          }
+          const errorMessage = error.error?.message || 'An error occurred';
+          this.toastr.error(errorMessage);
         },
       });
     }

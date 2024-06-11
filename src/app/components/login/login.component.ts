@@ -40,7 +40,6 @@ export class LoginComponent {
   }
   login(){
     this.submitted = true;
-    this.errorMessages = [];
     if(this.loginForm.valid){
       this.accountService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
@@ -48,11 +47,9 @@ export class LoginComponent {
       this.dialogRef.close();
         },
         error: (error) => {
-          if (error.error.errors) {
-            this.errorMessages = error.error.errors;
+          const errorMessage = error.error?.message || 'An error occurred';
 
-            this.toastr.success(this.errorMessages.toString());
-          }
+            this.toastr.error(errorMessage);
         },
       });
     }

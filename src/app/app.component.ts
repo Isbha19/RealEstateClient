@@ -13,41 +13,52 @@ import { TestimonialComponent } from './components/testimonial/testimonial.compo
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountService } from './service/account.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CarouselModule,NavbarComponent,HeaderComponent,
-    SearchComponent,CategoryComponent,AboutComponent,PropertyListComponent,
-    CallToActionComponent,AgentListComponent,TestimonialComponent,FooterComponent,LoadingSpinnerComponent
+  imports: [
+    RouterOutlet,
+    CarouselModule,
+    NavbarComponent,
+    HeaderComponent,
+    SearchComponent,
+    CategoryComponent,
+    AboutComponent,
+    PropertyListComponent,
+    CallToActionComponent,
+    AgentListComponent,
+    TestimonialComponent,
+    FooterComponent,
+    LoadingSpinnerComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'RealEstateClient';
-  constructor(private accountService:AccountService){}
+  loading: boolean = true; // Flag to track loading state
+  constructor(private accountService: AccountService) {}
   ngOnInit(): void {
- this.refreshUser();
+    this.refreshUser();
   }
 
-
-private refreshUser(){
-  const jwt=this.accountService.getjwt();
-if(jwt){
-  
-  this.accountService.refreshUser(jwt).subscribe({
-    next:_=>{},
-    error:_=>{
-      this.accountService.logout();
+  private refreshUser() {
+    const jwt = this.accountService.getjwt();
+    if (jwt) {
+      this.accountService.refreshUser(jwt).subscribe({
+        next: (_) => {
+          this.loading = false;
+        },
+        error: (_) => {
+          this.accountService.logout();
+          this.loading = false;
+        },
+      });
+    } else {
+      this.accountService.refreshUser(null).subscribe();
+      this.loading = false;
     }
-  })
-}else{
-
-  this.accountService.refreshUser(null).subscribe();
-}
-}
-  
-  
-
+  }
 }
