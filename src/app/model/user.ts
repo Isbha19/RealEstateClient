@@ -1,5 +1,5 @@
 export interface User{
-    firstname:string;
-    lastname:string;
-    jwt:string
+    flag:string;
+    message:string;
+    token:string
 }

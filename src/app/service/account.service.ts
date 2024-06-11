@@ -36,9 +36,7 @@ export class AccountService {
       .pipe(
         map((user: User) => {
             
-          if (user) {
-            console.log(user.jwt+"user");
-            
+          if (user) {            
             this.setUser(user);
             return user;
           }
