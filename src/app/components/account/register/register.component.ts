@@ -1,4 +1,3 @@
-import { ValidationMessagesComponent } from './../errors/validation-messages/validation-messages.component';
 import { CommonModule } from '@angular/common';
 import { Component, Inject, inject } from '@angular/core';
 
@@ -8,15 +7,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AccountService } from '../../service/account.service';
+import { AccountService } from '../../../service/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../account/login/login.component';
+import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ValidationMessagesComponent],
+  imports: [CommonModule, ReactiveFormsModule,ValidationMessagesComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

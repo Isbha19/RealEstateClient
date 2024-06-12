@@ -1,20 +1,7 @@
-<app-loading-spinner></app-loading-spinner>   
-   <!-- Spinner Start -->
-   <div *ngIf="loading" id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-<!-- Spinner End -->
-<app-navbar></app-navbar>
-<app-header></app-header>
-<app-search></app-search>
-<app-category></app-category>
-<app-about></app-about>
-<app-property-list></app-property-list>
-<app-call-to-action></app-call-to-action>
-<app-agent-list></app-agent-list>
-<app-testimonial></app-testimonial>
-<app-footer></app-footer>
+<app-loading-spinner [isLoaded]="loading"></app-loading-spinner>   
+<router-outlet></router-outlet>
+
+
+
 
    

@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ValidationMessagesComponent } from '../errors/validation-messages/validation-messages.component';
-import { AccountService } from '../../service/account.service';
+import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
+import { AccountService } from '../../../service/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
