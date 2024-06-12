@@ -1,18 +1,27 @@
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AccountService } from './../../../service/account.service';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { User } from '../../../model/account/user';
 import { ToastrService } from 'ngx-toastr';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-send-email',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './send-email.component.html',
   styleUrl: './send-email.component.scss',
 })
@@ -23,13 +32,12 @@ export class SendEmailComponent {
   data = inject(MAT_DIALOG_DATA);
   dialogref = inject(MatDialogRef<SendEmailComponent>);
 
-
   constructor(
     private accountService: AccountService,
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.accountService.user$.pipe(take(1)).subscribe({
@@ -66,7 +74,6 @@ export class SendEmailComponent {
   }
   sendEmail() {
     this.submitted = true;
-console.log("works");
 
     if (this.emailForm.valid && this.mode) {
       if (this.mode.includes('resend-email-confirmation-link')) {
@@ -76,16 +83,30 @@ console.log("works");
             next: (response: any) => {
               this.toastr.success(response.message);
               this.dialogref.close();
-
-            },error:error=>{
+            },
+            error: (error) => {
               const errorMessage = error.error?.message || 'An error occurred';
               this.toastr.error(errorMessage);
-            }
+            },
+          });
+      } else if (this.mode.includes('forgot-username-or-password')) {
+        this.accountService
+          .forgotUserNameOrPassword(this.emailForm.get('email')?.value)
+          .subscribe({
+            next: (response: any) => {
+              this.toastr.success(response.message);
+              this.dialogref.close();
+
+            },
+            error: (error) => {
+              const errorMessage = error.error?.message || 'An error occurred';
+              this.toastr.error(errorMessage);
+            },
           });
       }
     }
   }
-  cancel(){
+  cancel() {
     this.dialogref.close();
   }
 }

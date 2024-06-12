@@ -75,4 +75,12 @@ export class LoginComponent {
     this.OpenSendEmailPopUp();
 
   }
+  OpenPopUp(){
+    this.dialog.open(SendEmailComponent,{
+     width:'30%',
+     data:{
+       mode:'forgot-username-or-password'
+     }
+     
+   })}
 }

@@ -7,6 +7,7 @@ import { User } from '../model/account/user';
 import { ReplaySubject, map, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ConfirmEmail } from '../model/account/confirmEmail';
+import { ResetPassword } from '../model/account/resetPassword';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -74,5 +75,11 @@ export class AccountService {
   resendEmailConfirmation(email:string){
     return this.http.post(`${environment.apiUrl}Account/resend-email-confirmation-link/${email}`,{});
 
+  }
+  forgotUserNameOrPassword(email:string){
+    return this.http.post(`${environment.apiUrl}Account/forgot-username-or-password/${email}`,{});
+  }
+  resetPassword(model:ResetPassword){
+    return this.http.put(`${environment.apiUrl}Account/reset-password`,model);
   }
 }
