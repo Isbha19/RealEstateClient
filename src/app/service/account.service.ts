@@ -6,6 +6,7 @@ import { Login } from '../model/account/login.model';
 import { User } from '../model/account/user';
 import { ReplaySubject, map, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ConfirmEmail } from '../model/account/confirmEmail';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -47,6 +48,10 @@ export class AccountService {
   register(model: Register) {
     return this.http.post(`${environment.apiUrl}Account/register`, model);
   }
+
+  ConfirmEmail(model:ConfirmEmail){
+    return this.http.put(`${environment.apiUrl}Account/confirm-email`, model);
+  }
   logout() {
     localStorage.removeItem(environment.userKey);
     this.userSource.next(null);
@@ -65,5 +70,9 @@ export class AccountService {
     } else {
       return null;
     }
+  }
+  resendEmailConfirmation(email:string){
+    return this.http.post(`${environment.apiUrl}Account/resend-email-confirmation-link/${email}`,{});
+
   }
 }
