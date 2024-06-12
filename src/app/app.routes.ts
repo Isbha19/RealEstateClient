@@ -17,7 +17,7 @@ export const routes: Routes = [
       { path: 'not-found', component: NotFoundComponent },
       { path: 'confirm-email', component: ConfirmEmailComponent },
       { path: 'send-email/:mode', component: SendEmailComponent },
-      { path: 'third-party/:provider', component: RegisterWithThirdPartyComponent },
+      { path: 'register/third-party/:provider', component: RegisterWithThirdPartyComponent },
 
       { path: '**', component: NotFoundComponent },
     ],

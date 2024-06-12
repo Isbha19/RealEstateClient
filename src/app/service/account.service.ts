@@ -8,6 +8,7 @@ import { ReplaySubject, map, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ConfirmEmail } from '../model/account/confirmEmail';
 import { ResetPassword } from '../model/account/resetPassword';
+import { RegisterWithExternal } from '../model/account/registerWithExternal';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -81,5 +82,8 @@ export class AccountService {
   }
   resetPassword(model:ResetPassword){
     return this.http.put(`${environment.apiUrl}Account/reset-password`,model);
+  }
+  registerWithThirdParty(model:RegisterWithExternal){
+    return this.http.post(`${environment.apiUrl}Account/register-with-third-party`,model);
   }
 }

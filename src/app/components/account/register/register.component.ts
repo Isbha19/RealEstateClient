@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../../account/login/login.component';
 import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
+import { Router } from '@angular/router';
 declare const FB:any;
 @Component({
   selector: 'app-register',
@@ -30,7 +31,8 @@ export class RegisterComponent {
     private accountService: AccountService,
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<RegisterComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router:Router
   ) {}
   ngOnInit(): void {
     this.initializeForm();
@@ -97,6 +99,9 @@ FB.login(async(fbResult:any)=>{
 if(fbResult.authResponse){
 const accessToken=fbResult.authResponse.accessToken;
 const userId=fbResult.authResponse.userID;
+this.dialogRef.close();
+
+this.router.navigateByUrl(`/register/third-party/facebook?access_token=${accessToken}&userId=${userId}`);
 
 }else{
   this.toastr.error("Unable to register with your facebook")
