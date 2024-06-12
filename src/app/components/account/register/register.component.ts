@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../../account/login/login.component';
 import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
-
+declare const FB:any;
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -91,5 +91,19 @@ export class RegisterComponent {
         },
       });
     }
+  }
+  registerWithFacebook(){
+FB.login(async(fbResult:any)=>{
+if(fbResult.authResponse){
+const accessToken=fbResult.authResponse.accessToken;
+const userId=fbResult.authResponse.userID;
+
+}else{
+  this.toastr.error("Unable to register with your facebook")
+}
+})
+  }
+  registerWithGoogle(){
+
   }
 }
