@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +25,8 @@ export class RegisterWithThirdPartyComponent {
 constructor( private formBuilder: FormBuilder,
   private accountService: AccountService,
   private router:Router,
-private activatedRoute:ActivatedRoute){
+private activatedRoute:ActivatedRoute,
+private toastr:ToastrService){
 
 }
 ngOnInit(): void {
@@ -82,12 +84,16 @@ register(){
     const lastName=this.registerForm.get('lastName')?.value;
     const model=new RegisterWithExternal(firstName,lastName,this.userId,this.access_token,this.provider);
     this.accountService.registerWithThirdParty(model).subscribe({
-      next:response=>{
-        console.log(response);
-        
-      },error:error=>{
-
-      }
+      next: (response: any) => {
+        this.toastr.success(response.message);
+        this.router.navigateByUrl('/');
+    },
+    error: (error) => {
+      console.log(error);
+      
+      const errorMessage = error.error?.message || 'An error occurred';
+      this.toastr.error(errorMessage);
+    },
     })
 
   }

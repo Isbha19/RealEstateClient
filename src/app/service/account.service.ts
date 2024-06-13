@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ConfirmEmail } from '../model/account/confirmEmail';
 import { ResetPassword } from '../model/account/resetPassword';
 import { RegisterWithExternal } from '../model/account/registerWithExternal';
+import { LoginWithExternal } from '../model/account/loginWithExternal';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -38,8 +39,7 @@ export class AccountService {
       .post<User>(`${environment.apiUrl}Account/login`, model)
       .pipe(
         map((user: User) => {
-            
-          if (user) {            
+          if (user) {
             this.setUser(user);
             return user;
           }
@@ -51,7 +51,7 @@ export class AccountService {
     return this.http.post(`${environment.apiUrl}Account/register`, model);
   }
 
-  ConfirmEmail(model:ConfirmEmail){
+  ConfirmEmail(model: ConfirmEmail) {
     return this.http.put(`${environment.apiUrl}Account/confirm-email`, model);
   }
   logout() {
@@ -73,17 +73,42 @@ export class AccountService {
       return null;
     }
   }
-  resendEmailConfirmation(email:string){
-    return this.http.post(`${environment.apiUrl}Account/resend-email-confirmation-link/${email}`,{});
-
+  resendEmailConfirmation(email: string) {
+    return this.http.post(
+      `${environment.apiUrl}Account/resend-email-confirmation-link/${email}`,
+      {}
+    );
   }
-  forgotUserNameOrPassword(email:string){
-    return this.http.post(`${environment.apiUrl}Account/forgot-username-or-password/${email}`,{});
+  forgotUserNameOrPassword(email: string) {
+    return this.http.post(
+      `${environment.apiUrl}Account/forgot-username-or-password/${email}`,
+      {}
+    );
   }
-  resetPassword(model:ResetPassword){
-    return this.http.put(`${environment.apiUrl}Account/reset-password`,model);
+  resetPassword(model: ResetPassword) {
+    return this.http.put(`${environment.apiUrl}Account/reset-password`, model);
   }
-  registerWithThirdParty(model:RegisterWithExternal){
-    return this.http.post(`${environment.apiUrl}Account/register-with-third-party`,model);
+  registerWithThirdParty(model: RegisterWithExternal) {
+    return this.http
+      .post(`${environment.apiUrl}Account/register-with-third-party`, model)
+      .pipe(
+        map((user: any) => {
+          if (user) {
+            this.setUser(user);
+          }
+        })
+      );
+  }
+  loginWithThirdParty(model:LoginWithExternal){
+    return this.http.post<User>(
+      `${environment.apiUrl}Account/login-with-third-party`,
+      model
+    ).pipe(
+      map((user:User)=>{
+        if(user){
+          this.setUser(user);
+        }
+      })
+    );
   }
 }
