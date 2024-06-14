@@ -1,5 +1,4 @@
-import { Login } from './../../../model/account/login.model';
-import { Component } from '@angular/core';
+import { Component, ElementRef, Inject, InjectionToken, Renderer2, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,11 +8,14 @@ import {
 import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
 import { AccountService } from '../../../service/account.service';
 import { ToastrService } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SendEmailComponent } from '../send-email/send-email.component';
 import { LoginWithExternal } from '../../../model/account/loginWithExternal';
+import { jwtDecode } from "jwt-decode";
+import { CredentialResponse } from 'google-one-tap';
+
 declare const FB: any;
 @Component({
   selector: 'app-login',
@@ -23,6 +25,8 @@ declare const FB: any;
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  @ViewChild('googleButton', { static: true }) googleButton: ElementRef =
+  new ElementRef({});
   loginForm: FormGroup = new FormGroup({});
   errorMessages: string[] = [];
   submitted: boolean = false;
@@ -33,12 +37,26 @@ export class LoginComponent {
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<LoginComponent>,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private renderer2:Renderer2,
+    @Inject(DOCUMENT) private document:Document
   ) {}
 
   ngOnInit(): void {
+    this.initializeGoogleButton();
+
     this.initializeForm();
   }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    const script1=this.renderer2.createElement('script');
+    script1.src='https://accounts.google.com/gsi/client';
+    script1.async='true';
+    script1.defer='true';
+    this.renderer2.appendChild(this.document.body,script1);
+  
+   }
   initializeForm() {
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
@@ -109,5 +127,42 @@ export class LoginComponent {
       }
     });
   }
-  loginWithGoogle() {}
+  private initializeGoogleButton() {
+    (window as any).onGoogleLibraryLoad = () => {
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id:
+          '576596130520-rve6i5p5cvg24mfr4fa047734jv69i05.apps.googleusercontent.com',
+        callback: this.googleCallBack.bind(this),
+        auto_select: false,
+        cancel_on_tap_outside: true,
+      });
+      // @ts-ignore
+      google.accounts.id.renderButton(this.googleButton.nativeElement, {
+        size: 'medium',
+        shape: 'rectangular',
+        text: 'signin_with',
+        logo_alignment: 'center',
+        width:250
+      });
+    };
+  }
+  private async googleCallBack(response: CredentialResponse) {
+const decodedToken:any=jwtDecode(response.credential);
+this.dialogRef.close();
+
+this.accountService.loginWithThirdParty(new LoginWithExternal(response.credential,decodedToken.sub,"google"))
+.subscribe({
+  next:_=>{
+    this.toastr.success("logged in with google");
+    this.router.navigateByUrl('/');
+  },error:error=>{
+    const errorMessage = error.error?.message || 'An error occurred';
+    this.toastr.error(errorMessage);
+  }
+})
+  }
 }
+
+
+

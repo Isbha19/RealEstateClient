@@ -156,6 +156,7 @@ export class RegisterComponent {
   }
   private async googleCallBack(response: CredentialResponse) {
 const decodedToken:any=jwtDecode(response.credential);
+this.dialogRef.close();
 
 this.router.navigateByUrl(
   `/register/third-party/google?access_token=${response.credential}&userId=${decodedToken.sub}`
