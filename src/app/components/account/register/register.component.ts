@@ -1,5 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, Inject, inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 
 import {
   FormBuilder,
@@ -13,15 +20,19 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../../account/login/login.component';
 import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
 import { Router } from '@angular/router';
-declare const FB:any;
+import { CredentialResponse } from 'google-one-tap';
+import { jwtDecode } from "jwt-decode";
+declare const FB: any;
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,ValidationMessagesComponent],
+  imports: [CommonModule, ReactiveFormsModule, ValidationMessagesComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  @ViewChild('googleButton', { static: true }) googleButton: ElementRef =
+    new ElementRef({});
   registerForm: FormGroup = new FormGroup({});
   errorMessages: string[] = [];
   submitted: boolean = false;
@@ -32,11 +43,24 @@ export class RegisterComponent {
     private toastr: ToastrService,
     private dialogRef: MatDialogRef<RegisterComponent>,
     private dialog: MatDialog,
-    private router:Router
+    private router: Router,
+    private renderer2:Renderer2,
+    @Inject(DOCUMENT) private document:Document
   ) {}
   ngOnInit(): void {
+    this.initializeGoogleButton();
     this.initializeForm();
   }
+ ngAfterViewInit(): void {
+  //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //Add 'implements AfterViewInit' to the class.
+  const script1=this.renderer2.createElement('script');
+  script1.src='https://accounts.google.com/gsi/client';
+  script1.async='true';
+  script1.defer='true';
+  this.renderer2.appendChild(this.document.body,script1);
+
+ }
   initializeForm() {
     this.registerForm = this.formBuilder.group({
       firstName: [
@@ -82,10 +106,10 @@ export class RegisterComponent {
     this.errorMessages = [];
     if (this.registerForm.valid) {
       this.accountService.register(this.registerForm.value).subscribe({
-        next: (response:any) => {
-            this.toastr.success(response.message);
-            this.dialogRef.close();
-            this.dialog.open(LoginComponent, { width: '60%' });        
+        next: (response: any) => {
+          this.toastr.success(response.message);
+          this.dialogRef.close();
+          this.dialog.open(LoginComponent, { width: '60%' });
         },
         error: (error) => {
           const errorMessage = error.error?.message || 'An error occurred';
@@ -94,21 +118,47 @@ export class RegisterComponent {
       });
     }
   }
-  registerWithFacebook(){
-FB.login(async(fbResult:any)=>{
-if(fbResult.authResponse){
-const accessToken=fbResult.authResponse.accessToken;
-const userId=fbResult.authResponse.userID;
-this.dialogRef.close();
+  registerWithFacebook() {
+    FB.login(async (fbResult: any) => {
+      if (fbResult.authResponse) {
+        const accessToken = fbResult.authResponse.accessToken;
+        const userId = fbResult.authResponse.userID;
+        this.dialogRef.close();
 
-this.router.navigateByUrl(`/register/third-party/facebook?access_token=${accessToken}&userId=${userId}`);
-
-}else{
-  this.toastr.error("Unable to register with your facebook")
-}
-})
+        this.router.navigateByUrl(
+          `/register/third-party/facebook?access_token=${accessToken}&userId=${userId}`
+        );
+      } else {
+        this.toastr.error('Unable to register with your facebook');
+      }
+    });
   }
-  registerWithGoogle(){
+ 
+  private initializeGoogleButton() {
+    (window as any).onGoogleLibraryLoad = () => {
+      // @ts-ignore
+      google.accounts.id.initialize({
+        client_id:
+          '576596130520-rve6i5p5cvg24mfr4fa047734jv69i05.apps.googleusercontent.com',
+        callback: this.googleCallBack.bind(this),
+        auto_select: false,
+        cancel_on_tap_outside: true,
+      });
+      // @ts-ignore
+      google.accounts.id.renderButton(this.googleButton.nativeElement, {
+        size: 'medium',
+        shape: 'rectangular',
+        text: 'signup_with',
+        logo_alignment: 'center',
+        width:250
+      });
+    };
+  }
+  private async googleCallBack(response: CredentialResponse) {
+const decodedToken:any=jwtDecode(response.credential);
 
+this.router.navigateByUrl(
+  `/register/third-party/google?access_token=${response.credential}&userId=${decodedToken.sub}`
+);
   }
 }

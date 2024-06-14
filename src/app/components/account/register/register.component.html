@@ -20,9 +20,10 @@
           </div>
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
             <button class="col-12 facebook-login-btn mb-3" (click)="registerWithFacebook()"><i class="fab fa-facebook me-2" style="font-size: larger;"></i>Continue with Facebook</button>
-            <button class="col-12 google-login-btn" (click)="registerWithGoogle()">
+           <!-- <button class="col-12 google-login-btn" (click)="registerWithGoogle()">
               <i class="fab fa-google me-2"></i> Continue with Google
-            </button>
+            </button>  -->
+            <div class="google-login-btn" #googleButton></div>
             
             <div class="row d-flex justify-content-center mt-3">
               <div class="col-4">
