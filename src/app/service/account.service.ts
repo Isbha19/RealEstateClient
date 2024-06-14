@@ -65,10 +65,10 @@ export class AccountService {
   }
   getjwt() {
     const key = localStorage.getItem(environment.userKey);
-
+    
     if (key) {
       const user = JSON.parse(key);
-      return user.token;
+      return user.data.jwt;
     } else {
       return null;
     }
@@ -94,7 +94,10 @@ export class AccountService {
       .pipe(
         map((user: any) => {
           if (user) {
+            console.log("result"+JSON.stringify(user));  
             this.setUser(user);
+            return user;
+            
           }
         })
       );
@@ -107,7 +110,8 @@ export class AccountService {
       map((user:User)=>{
         if(user){
           this.setUser(user);
-        }
+          return user;
+        }return null;
       })
     );
   }

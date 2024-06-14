@@ -46,7 +46,10 @@ export class AppComponent {
 
   private refreshUser() {
     const jwt = this.accountService.getjwt();
+    
     if (jwt) {
+      console.log(jwt);
+      
       this.accountService.refreshUser(jwt).subscribe({
         next: (_) => {
           this.loading = false;

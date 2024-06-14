@@ -50,9 +50,10 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.accountService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
-          this.toastr.success(response.message);
           this.dialogRef.close();
-          this.router.navigateByUrl('/');
+
+          this.toastr.success(response.message);
+          
         },
         error: (error) => {
           const errorMessage = error.error?.message || 'An error occurred';
@@ -88,7 +89,6 @@ export class LoginComponent {
       if (fbResult.authResponse) {
         const accessToken = fbResult.authResponse.accessToken;
         const userId = fbResult.authResponse.userID;
-        console.log(fbResult);
         
         this.dialogRef.close();
         this.accountService
@@ -96,9 +96,8 @@ export class LoginComponent {
             new LoginWithExternal(accessToken, userId, 'facebook')
           )
           .subscribe({
-            next: (_) => {
+            next: (response:any) => {
           this.dialogRef.close();
-          this.router.navigateByUrl('/');
             },
             error:error=>{
               const errorMessage = error.error?.message || 'An error occurred';

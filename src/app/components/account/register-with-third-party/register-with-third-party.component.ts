@@ -40,7 +40,6 @@ this.accountService.user$.pipe(take(1)).subscribe({
           this.provider=this.activatedRoute.snapshot.paramMap.get('provider');
           this.access_token=params.get('access_token');
           this.userId=params.get('userId');
-          console.log(this.provider);
         if(this.provider&&this.access_token &&this.userId && (this.provider==='facebook'||this.provider==='google')){
 this.initializeForm();
         }else{
@@ -79,23 +78,38 @@ initializeForm() {
 
 register(){
   this.submitted=true;
+  console.log("heree1");
+  
   if(this.registerForm.valid && this.userId&&this.access_token&&this.provider){
+    console.log("works");
+    
     const firstName=this.registerForm.get('firstName')?.value;
     const lastName=this.registerForm.get('lastName')?.value;
     const model=new RegisterWithExternal(firstName,lastName,this.userId,this.access_token,this.provider);
+    console.log(model+"ml");
+    
     this.accountService.registerWithThirdParty(model).subscribe({
       next: (response: any) => {
-        this.toastr.success(response.message);
-        this.router.navigateByUrl('/');
+        console.log(response+"pl");
+        
+        if (response && response.message) {
+          this.toastr.success(response.message);
+          this.router.navigateByUrl('/');
+      } else {
+          this.toastr.error('Unexpected response format');
+          this.router.navigateByUrl('/');
+      }
+        
     },
-    error: (error) => {
-      console.log(error);
-      
+    error: (error) => {      
       const errorMessage = error.error?.message || 'An error occurred';
       this.toastr.error(errorMessage);
-    },
-    })
-
-  }
+      
+      console.log('Navigating to home page on error');
+      this.router.navigateByUrl('/').then(navigated => {
+        console.log(`Navigated: ${navigated}`);
+      });
+    }
+  });
 }
-}
+}}

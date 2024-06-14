@@ -82,7 +82,7 @@ export class RegisterComponent {
     this.errorMessages = [];
     if (this.registerForm.valid) {
       this.accountService.register(this.registerForm.value).subscribe({
-        next: (response: any) => {
+        next: (response:any) => {
             this.toastr.success(response.message);
             this.dialogRef.close();
             this.dialog.open(LoginComponent, { width: '60%' });        

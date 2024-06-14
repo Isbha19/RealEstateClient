@@ -1,5 +1,5 @@
 export interface User{
-    flag:string;
-    message:string;
-    token:string
+    FirstName:string;
+    LastName:string;
+    JWT:string
 }
