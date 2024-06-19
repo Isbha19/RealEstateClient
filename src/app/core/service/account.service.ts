@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
+  
   private userSource = new ReplaySubject<User | null>(1);
   user$ = this.userSource.asObservable();
   constructor(private http: HttpClient, private router: Router) {}

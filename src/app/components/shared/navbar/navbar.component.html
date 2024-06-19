@@ -14,6 +14,7 @@
             <div class="navbar-nav ms-auto">
                 <a href="index.html" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div class="dropdown-menu rounded-0 m-0">
@@ -30,8 +31,12 @@
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div>
 
+            </div>
+  <!-- Admin Dashboard Button -->
+  <div class="nav-item mb-3 mb-lg-0 me-lg-3" *ngIf="(accountService.user$|async)">
+    <a  class="btn btn-outline-primary nav-link nav-item" routerLink="admin-dashboard">Admin Dashboard</a>
+</div>
             <div class="nav-item dropdown" *ngIf="(accountService.user$|async)===null">
                 <a (click)="LoginPopUp()" class="btn btn-outline-primary nav-link nav-item"  data-bs-toggle="dropdown" href="#tab-2">Login</a>
 
@@ -51,6 +56,7 @@
                 
                 
             </div>
+           
             <div class="nav-item dropdown" *ngIf="(accountService.user$|async) as user">
                 <a (click)="Logout()" class="btn btn-outline-primary nav-link nav-item"  data-bs-toggle="dropdown" href="#tab-2">Logout</a>
 
@@ -70,6 +76,8 @@
                 
                 
             </div>
+
+           
         </div>
     </nav>
 </div>
