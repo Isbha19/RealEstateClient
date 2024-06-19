@@ -2,11 +2,11 @@ import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../../../service/account.service';
 import { take } from 'rxjs';
-import { User } from '../../../model/account/user';
-import { RegisterWithExternal } from '../../../model/account/registerWithExternal';
 import { CommonModule } from '@angular/common';
+import { RegisterWithExternal } from '../../../../core/model/account/registerWithExternal';
+import { User } from '../../../../core/model/account/user';
+import { AccountService } from '../../../../core/service/account.service';
 
 @Component({
   selector: 'app-register-with-third-party',

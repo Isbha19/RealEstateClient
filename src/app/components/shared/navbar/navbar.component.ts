@@ -1,9 +1,9 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { LoginComponent } from '../account/login/login.component';
-import { AccountService } from '../../service/account.service';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from '../account/register/register.component';
+import { AccountService } from '../../../core/service/account.service';
+import { LoginComponent } from '../../features/account/login/login.component';
+import { RegisterComponent } from '../../features/account/register/register.component';
 
 @Component({
   selector: 'app-navbar',

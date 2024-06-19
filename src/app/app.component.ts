@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AboutComponent } from './components/about/about.component';
@@ -10,10 +8,13 @@ import { PropertyListComponent } from './components/property-list/property-list.
 import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
 import { AgentListComponent } from './components/agent-list/agent-list.component';
 import { TestimonialComponent } from './components/testimonial/testimonial.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AccountService } from './service/account.service';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/layouts/header/header.component';
+import { FooterComponent } from './components/layouts/footer/footer.component';
+import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { AccountService } from './core/service/account.service';
 
 @Component({
   selector: 'app-root',

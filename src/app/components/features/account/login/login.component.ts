@@ -5,16 +5,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
-import { AccountService } from '../../../service/account.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SendEmailComponent } from '../send-email/send-email.component';
-import { LoginWithExternal } from '../../../model/account/loginWithExternal';
 import { jwtDecode } from "jwt-decode";
 import { CredentialResponse } from 'google-one-tap';
+import { LoginWithExternal } from '../../../../core/model/account/loginWithExternal';
+import { AccountService } from '../../../../core/service/account.service';
+import { ValidationMessagesComponent } from '../../../errors/validation-messages/validation-messages.component';
 
 declare const FB: any;
 @Component({

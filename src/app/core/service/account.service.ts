@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Register } from '../model/account/register.model';
-import { environment } from '../../environments/environment.development';
 import { Login } from '../model/account/login.model';
 import { User } from '../model/account/user';
 import { ReplaySubject, map, of } from 'rxjs';
@@ -10,6 +9,7 @@ import { ConfirmEmail } from '../model/account/confirmEmail';
 import { ResetPassword } from '../model/account/resetPassword';
 import { RegisterWithExternal } from '../model/account/registerWithExternal';
 import { LoginWithExternal } from '../model/account/loginWithExternal';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {

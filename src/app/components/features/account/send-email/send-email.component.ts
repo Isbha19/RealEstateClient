@@ -4,11 +4,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AccountService } from './../../../service/account.service';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
-import { User } from '../../../model/account/user';
 import { ToastrService } from 'ngx-toastr';
 import {
   MAT_DIALOG_DATA,
@@ -17,6 +15,8 @@ import {
 } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
+import { User } from '../../../../core/model/account/user';
+import { AccountService } from '../../../../core/service/account.service';
 
 @Component({
   selector: 'app-send-email',

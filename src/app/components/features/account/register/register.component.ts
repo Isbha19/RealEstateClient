@@ -14,14 +14,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AccountService } from '../../../service/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../../account/login/login.component';
-import { ValidationMessagesComponent } from '../../errors/validation-messages/validation-messages.component';
 import { Router } from '@angular/router';
 import { CredentialResponse } from 'google-one-tap';
 import { jwtDecode } from "jwt-decode";
+import { AccountService } from '../../../../core/service/account.service';
+import { ValidationMessagesComponent } from '../../../errors/validation-messages/validation-messages.component';
 declare const FB: any;
 @Component({
   selector: 'app-register',

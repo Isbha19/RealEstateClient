@@ -8,11 +8,11 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountService } from '../../../service/account.service';
 import { take } from 'rxjs';
-import { User } from '../../../model/account/user';
 import { CommonModule } from '@angular/common';
-import { ResetPassword } from '../../../model/account/resetPassword';
+import { ResetPassword } from '../../../../core/model/account/resetPassword';
+import { User } from '../../../../core/model/account/user';
+import { AccountService } from '../../../../core/service/account.service';
 
 @Component({
   selector: 'app-reset-password',
