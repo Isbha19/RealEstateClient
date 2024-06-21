@@ -1,3 +1,4 @@
+import { DynamicAssetLoaderService } from './../../../core/service/dynamic-asset-loader.service';
 import { Component } from '@angular/core';
 import { AdminService } from '../../../core/service/admin.service';
 import { MemberView } from '../../../core/model/admin/memberView';
@@ -11,10 +12,12 @@ import { MemberView } from '../../../core/model/admin/memberView';
 })
 export class AdminComponent {
   members:MemberView[]=[];
-  constructor(private adminService:AdminService){}
+  constructor(private adminService:AdminService,private dynamicLoading:DynamicAssetLoaderService ){}
 
 ngOnInit(): void {
-this.adminService.getMembers().subscribe({
-  next:members=>this.members=members
-})}
+  this.dynamicLoading.loadAdminAssets();
+// this.adminService.getMembers().subscribe({
+//   next:members=>this.members=members
+// })}
+}
 }
