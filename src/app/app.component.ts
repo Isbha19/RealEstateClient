@@ -1,20 +1,22 @@
+import { LoadingSpinnerComponent } from './components/User/shared/loading-spinner/loading-spinner.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { SearchComponent } from './components/search/search.component';
-import { CategoryComponent } from './components/category/category.component';
-import { AboutComponent } from './components/about/about.component';
-import { PropertyListComponent } from './components/property-list/property-list.component';
-import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
-import { AgentListComponent } from './components/agent-list/agent-list.component';
-import { TestimonialComponent } from './components/testimonial/testimonial.component';
+
+import { TestimonialComponent } from './components/User/testimonial/testimonial.component';
 
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/layouts/header/header.component';
-import { FooterComponent } from './components/layouts/footer/footer.component';
-import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
+
 import { AccountService } from './core/service/account.service';
+import { AboutComponent } from './components/User/about/about.component';
+import { AgentListComponent } from './components/User/agent-list/agent-list.component';
+import { CallToActionComponent } from './components/User/call-to-action/call-to-action.component';
+import { CategoryComponent } from './components/User/category/category.component';
+import { FooterComponent } from './components/User/layouts/footer/footer.component';
+import { HeaderComponent } from './components/User/layouts/header/header.component';
+import { PropertyListComponent } from './components/User/property-list/property-list.component';
+import { SearchComponent } from './components/User/search/search.component';
+import { NavbarComponent } from './components/User/shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',

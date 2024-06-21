@@ -15,8 +15,9 @@ import {
 } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
-import { User } from '../../../../core/model/account/user';
-import { AccountService } from '../../../../core/service/account.service';
+import { User } from '../../../../../core/model/account/user';
+import { AccountService } from '../../../../../core/service/account.service';
+
 
 @Component({
   selector: 'app-send-email',

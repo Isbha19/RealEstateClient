@@ -20,8 +20,8 @@ import { LoginComponent } from '../../account/login/login.component';
 import { Router } from '@angular/router';
 import { CredentialResponse } from 'google-one-tap';
 import { jwtDecode } from "jwt-decode";
-import { AccountService } from '../../../../core/service/account.service';
 import { ValidationMessagesComponent } from '../../../errors/validation-messages/validation-messages.component';
+import { AccountService } from '../../../../../core/service/account.service';
 declare const FB: any;
 @Component({
   selector: 'app-register',

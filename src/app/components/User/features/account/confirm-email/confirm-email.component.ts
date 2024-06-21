@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SendEmailComponent } from '../send-email/send-email.component';
-import { ConfirmEmail } from '../../../../core/model/account/confirmEmail';
-import { User } from '../../../../core/model/account/user';
-import { AccountService } from '../../../../core/service/account.service';
+import { ConfirmEmail } from '../../../../../core/model/account/confirmEmail';
+import { User } from '../../../../../core/model/account/user';
+import { AccountService } from '../../../../../core/service/account.service';
 
 @Component({
   selector: 'app-confirm-email',

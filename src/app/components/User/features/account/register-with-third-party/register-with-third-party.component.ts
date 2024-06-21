@@ -4,9 +4,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { RegisterWithExternal } from '../../../../core/model/account/registerWithExternal';
-import { User } from '../../../../core/model/account/user';
-import { AccountService } from '../../../../core/service/account.service';
+import { RegisterWithExternal } from '../../../../../core/model/account/registerWithExternal';
+import { User } from '../../../../../core/model/account/user';
+import { AccountService } from '../../../../../core/service/account.service';
+
 
 @Component({
   selector: 'app-register-with-third-party',

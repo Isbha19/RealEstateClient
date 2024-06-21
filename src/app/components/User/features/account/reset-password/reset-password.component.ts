@@ -10,9 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { ResetPassword } from '../../../../core/model/account/resetPassword';
-import { User } from '../../../../core/model/account/user';
-import { AccountService } from '../../../../core/service/account.service';
+import { ResetPassword } from '../../../../../core/model/account/resetPassword';
+import { User } from '../../../../../core/model/account/user';
+import { AccountService } from '../../../../../core/service/account.service';
+
 
 @Component({
   selector: 'app-reset-password',

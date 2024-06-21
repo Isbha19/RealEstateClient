@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
 import { SendEmailComponent } from '../send-email/send-email.component';
 import { jwtDecode } from "jwt-decode";
 import { CredentialResponse } from 'google-one-tap';
-import { LoginWithExternal } from '../../../../core/model/account/loginWithExternal';
-import { AccountService } from '../../../../core/service/account.service';
+
 import { ValidationMessagesComponent } from '../../../errors/validation-messages/validation-messages.component';
+import { LoginWithExternal } from '../../../../../core/model/account/loginWithExternal';
+import { AccountService } from '../../../../../core/service/account.service';
 
 declare const FB: any;
 @Component({
