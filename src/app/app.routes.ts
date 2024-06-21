@@ -10,6 +10,7 @@ import { adminGuard } from './core/guards/admin.guard';
 import { AdminParentComponent } from './components/Admin/admin-parent/admin-parent.component';
 import { SendEmailComponent } from './components/User/features/account/send-email/send-email.component';
 import { RegisterWithThirdPartyComponent } from './components/User/features/account/register-with-third-party/register-with-third-party.component';
+import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -31,22 +32,7 @@ export const routes: Routes = [
     path: 'admin-dashboard',
     runGuardsAndResolvers: 'always',
     canActivate: [adminGuard],
-    component: AdminComponent
-  },
-  {
-    path: '',
-    component: AdminParentComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'reset-password', component: ResetPasswordComponent },
-      { path: 'not-found', component: NotFoundComponent },
-      { path: 'confirm-email', component: ConfirmEmailComponent },
-      { path: 'send-email/:mode', component: SendEmailComponent },
-      {
-        path: 'register/third-party/:provider',
-        component: RegisterWithThirdPartyComponent,
-      },
-    ],
+    component: AdminComponent,
   },
   { path: '**', component: NotFoundComponent },
 ];
