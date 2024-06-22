@@ -43,7 +43,7 @@ export class DynamicAssetLoaderService {
       'assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css'
     );
     this.loadStyle('assets/admin/plugins/jqvmap/jqvmap.min.css');
-    this.loadStyle('assets/admin/dist/css/adminlte.css');
+    this.loadStyle('assets/admin/dist/css/adminlte.min.css');
     this.loadStyle(
       'assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'
     );

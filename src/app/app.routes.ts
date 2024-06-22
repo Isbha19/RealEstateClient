@@ -7,10 +7,8 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/Admin/admin/admin.component';
 import { adminGuard } from './core/guards/admin.guard';
-import { AdminParentComponent } from './components/Admin/admin-parent/admin-parent.component';
 import { SendEmailComponent } from './components/User/features/account/send-email/send-email.component';
 import { RegisterWithThirdPartyComponent } from './components/User/features/account/register-with-third-party/register-with-third-party.component';
-import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   {

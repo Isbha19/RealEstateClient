@@ -2,12 +2,11 @@ import { DynamicAssetLoaderService } from './../../../core/service/dynamic-asset
 import { Component } from '@angular/core';
 import { AdminService } from '../../../core/service/admin.service';
 import { MemberView } from '../../../core/model/admin/memberView';
-import { AdminParentComponent } from '../admin-parent/admin-parent.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [AdminParentComponent],
+  imports: [],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
