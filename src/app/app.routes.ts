@@ -31,6 +31,8 @@ export const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [adminGuard],
     component: AdminComponent,
+  
   },
+ 
   { path: '**', component: NotFoundComponent },
 ];
