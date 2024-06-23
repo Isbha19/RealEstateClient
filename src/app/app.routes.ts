@@ -1,3 +1,5 @@
+import { AdminDashboardComponent } from './components/Admin/admin-dashboard/admin-dashboard.component';
+import { UserCrudComponent } from './components/Admin/user-crud/user-crud.component';
 import { ConfirmEmailComponent } from './components/User/features/account/confirm-email/confirm-email.component';
 import { NotFoundComponent } from './components/User/errors/not-found/not-found.component';
 import { ResetPasswordComponent } from './components/User/features/account/reset-password/reset-password.component';
@@ -31,7 +33,10 @@ export const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [adminGuard],
     component: AdminComponent,
-  
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'user-crud', component: UserCrudComponent }
+    ]
   },
  
   { path: '**', component: NotFoundComponent },

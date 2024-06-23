@@ -1,7 +1,8 @@
-import { AdminFooterComponent } from './../admin-footer/admin-footer.component';
-import { AdminSidebarComponent } from './../admin-sidebar/admin-sidebar.component';
-import { AdminNavbarComponent } from './../admin-navbar/admin-navbar.component';
-import { ActivatedRouteSnapshot, RouterOutlet, RouterStateSnapshot } from '@angular/router';
+import { AdminFooterComponent } from './../layout/admin-footer/admin-footer.component';
+import { AdminSidebarComponent } from './../layout/admin-sidebar/admin-sidebar.component';
+import { AdminNavbarComponent } from './../layout/admin-navbar/admin-navbar.component';
+
+import { RouterOutlet } from '@angular/router';
 import { DynamicAssetLoaderService } from './../../../core/service/dynamic-asset-loader.service';
 import { Component } from '@angular/core';
 import { AdminService } from '../../../core/service/admin.service';
