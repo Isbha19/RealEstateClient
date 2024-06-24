@@ -2,7 +2,7 @@ import { AdminFooterComponent } from './../layout/admin-footer/admin-footer.comp
 import { AdminSidebarComponent } from './../layout/admin-sidebar/admin-sidebar.component';
 import { AdminNavbarComponent } from './../layout/admin-navbar/admin-navbar.component';
 
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterOutlet } from '@angular/router';
 import { DynamicAssetLoaderService } from './../../../core/service/dynamic-asset-loader.service';
 import { Component } from '@angular/core';
 import { AdminService } from '../../../core/service/admin.service';
@@ -21,8 +21,5 @@ export class AdminComponent {
 
 ngOnInit(): void {
   this.dynamicLoading.loadAdminAssets();
-// this.adminService.getMembers().subscribe({
-//   next:members=>this.members=members
-// })}
 }
 }
