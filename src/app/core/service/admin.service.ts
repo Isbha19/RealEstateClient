@@ -31,13 +31,13 @@ export class AdminService {
   }
   lockMember(id: string) {
     return this.http.put(
-      `${environment.apiUrl}/api/admin/lock-member/${id}`,
+      `${environment.apiUrl}Admin/lock-member/${id}`,
       {}
     );
   }
   unlockMember(id: string) {
     return this.http.put(
-      `${environment.apiUrl}/api/admin/unlock-member/${id}`,
+      `${environment.apiUrl}Admin/unlock-member/${id}`,
       {}
     );
   }
