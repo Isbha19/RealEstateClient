@@ -10,7 +10,7 @@ export class AdminService {
 
   getMembers() {
     return this.http.get<MemberView[]>(
-      `${environment.apiUrl}/api/admin/get-members`
+      `${environment.apiUrl}Admin/get-members`
     );
   }
   getMember(id: string) {
