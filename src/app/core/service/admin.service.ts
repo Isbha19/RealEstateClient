@@ -43,7 +43,7 @@ export class AdminService {
   }
   deleteMember(id: string) {
     return this.http.delete(
-      `${environment.apiUrl}/api/admin/delete-member/${id}`,
+      `${environment.apiUrl}Admin/delete-member/${id}`,
       {}
     );
   }
