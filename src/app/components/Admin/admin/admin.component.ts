@@ -20,6 +20,6 @@ export class AdminComponent {
   constructor(private adminService:AdminService,private dynamicLoading:DynamicAssetLoaderService ){}
 
 ngOnInit(): void {
-  this.dynamicLoading.loadAdminAssets();
+   //this.dynamicLoading.loadAdminAssets();
 }
 }

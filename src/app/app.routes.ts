@@ -33,10 +33,11 @@ export const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [adminGuard],
     component: AdminComponent,
-    children: [
-      { path: '', component: AdminDashboardComponent },
-      { path: 'user-crud', component: UserCrudComponent }
-    ]
+children: [
+   
+     { path: '', component: AdminDashboardComponent },
+   { path: 'user-crud', component: UserCrudComponent }
+]
   },
  
   { path: '**', component: NotFoundComponent },
