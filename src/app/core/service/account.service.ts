@@ -9,7 +9,7 @@ import { ConfirmEmail } from '../model/account/confirmEmail';
 import { ResetPassword } from '../model/account/resetPassword';
 import { RegisterWithExternal } from '../model/account/registerWithExternal';
 import { LoginWithExternal } from '../model/account/loginWithExternal';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {

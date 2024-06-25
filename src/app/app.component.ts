@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/User/layouts/header/header.compone
 import { PropertyListComponent } from './components/User/property-list/property-list.component';
 import { SearchComponent } from './components/User/search/search.component';
 import { NavbarComponent } from './components/User/shared/navbar/navbar.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -42,7 +43,9 @@ import { NavbarComponent } from './components/User/shared/navbar/navbar.componen
 })
 export class AppComponent {
   loading: boolean = true; // Flag to track loading state
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,
+    private toastr:ToastrService
+  ) {}
   ngOnInit(): void {
     this.refreshUser();
   }
@@ -57,8 +60,10 @@ export class AppComponent {
         next: (_) => {
           this.loading = false;
         },
-        error: (_) => {
+        error: (error) => {
           this.accountService.logout();
+          const errorMessage = error.error?.message || 'An error occurred';
+          this.toastr.error(errorMessage);
           this.loading = false;
         },
       });
