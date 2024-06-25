@@ -9,9 +9,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   
   accountService.user$.pipe(take(1)).subscribe({
     next:user=>{
-      if(user){
-        console.log("user"+ JSON.stringify(user.data.jwt));
-        
+      if(user){        
         req=req.clone({
           setHeaders:{
             Authorization:`Bearer ${user.data.jwt}`

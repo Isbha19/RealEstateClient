@@ -1,3 +1,5 @@
+import { AddEditMemberComponent } from './../add-edit-member/add-edit-member.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { MemberView } from '../../../core/model/admin/memberView';
 import { AdminService } from '../../../core/service/admin.service';
@@ -19,7 +21,8 @@ export class UserCrudComponent {
   @ViewChild('modal') modal?: ElementRef;
   constructor(
     private adminService: AdminService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private dialog:MatDialog
   ) {}
   ngOnInit(): void {
     this.adminService.getMembers().subscribe({
@@ -96,5 +99,13 @@ export class UserCrudComponent {
   }
   closeModal() {
     $(this.modal?.nativeElement).modal('hide');
+  }
+  openEditCreatePopup(id?:string){
+    this.dialog.open(AddEditMemberComponent,{
+      width:'40%',
+      data:{
+        id:id
+      }
+    })
   }
 }

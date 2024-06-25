@@ -15,17 +15,17 @@ export class AdminService {
   }
   getMember(id: string) {
     return this.http.get<MemberAddEdit>(
-      `${environment.apiUrl}/api/admin/get-member/${id}`
+      `${environment.apiUrl}Admin/get-member/${id}`
     );
   }
   getApplicationRoles() {
     return this.http.get<string[]>(
-      `${environment.apiUrl}/api/admin/get-application-roles`
+      `${environment.apiUrl}Admin/get-application-roles`
     );
   }
   addEditMember(model: MemberAddEdit) {
     return this.http.post(
-      `${environment.apiUrl}/api/admin/add-edit-member`,
+      `${environment.apiUrl}Admin/add-edit-member`,
       model
     );
   }
